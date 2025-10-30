@@ -1,4 +1,5 @@
 let myfilesopen = false;
+let webopen = false;
 let saveddata; 
 let user;
 let indexU = -1;
@@ -45,7 +46,12 @@ function openfiles(){
   }
 }
 function openweb(){
-
+  if(webopen){return}
+  const thewindow = document.getElementById("Lbar");
+  const newDiv = document.createElement("div");
+  newDiv.innerHTML = '<div id="myweb" class="window"><div id="mywebheader" class="handle"><img style="margin-left: 1%; width: 15px; height: 15px;" src="theweb.png"></div><input id="sitead" type="text" style="width: 79%; position: absolute; left: 25; top: 10;"> <button style="position: absolute; right: 55; top: 10;" onclick="searchweb()">Search</button><button class="Close" id="close" onclick="windowclose('+"'myweb'"+')">X</button><div id="inside" style="overflow: scroll; width: 100%; height: 90%;"></div></div> ';
+  document.body.insertBefore(newDiv, thewindow);
+  dragElement(document.getElementById("myweb"));
 }
 function searchweb(){
   const sitead = document.getElementById("sitead").value;
@@ -131,6 +137,10 @@ function dragElement(elmnt) {
 }
 function windowclose(idet){
     const element = document.getElementById(idet);
-    myfilesopen = false;
-    element.remove();
+        element.remove();
+    if(idet == "mydiv"){
+    myfilesopen = false;}
+    if(id == "myweb"){
+      webopen = false;
+    }
 }
