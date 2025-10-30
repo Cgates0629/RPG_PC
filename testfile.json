@@ -1,5 +1,6 @@
-{"files":[{"name":"T1", "insides":"What the fuck is going on here", "Perm":["Admin","User1"]},
-{"name":"T2", "insides":"What the fuck is going on heressdads", "Perm":["Admin","User2"]}],
-"Users":[{"Username":"Admin","Password":"Admin"},{"Username":"User2","Password":"User2"},{"Username":"User1","Password":"User1"}],
+{"files":[{"name":"T1", "insides":"What the fuck is going on here", "Perm":["AdminGuy2","User1"]},
+{"name":"T2", "insides":"What the fuck is going on heressdads", "Perm":["AdminGuy2","User2"]}],
+"Users":[{"Username":"AdminGuy2","Password":"AdminGuy2"},{"Username":"User2","Password":"User2"},{"Username":"User1","Password":"User1"}],
 "Sites":[{"Adress":"Website.com","HTML":"<title>Wrong address</title><body><h1>Ooops!</h1><h2>I cannot find the file you requested!</h2></body>"},{"Adress":"Gorm.com", "HTML":"Great Evil"
+
 }]}
