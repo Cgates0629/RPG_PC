@@ -144,7 +144,8 @@ function windowclose(idet){
         element.remove();
     if(idet == "mydiv"){
     myfilesopen = false;}
-    if(id == "myweb"){
+    if(idet == "myweb"){
       webopen = false;
     }
+
 }
