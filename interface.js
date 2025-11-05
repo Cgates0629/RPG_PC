@@ -58,12 +58,15 @@ function openweb(){
 }
 function searchweb(){
   const sitead = document.getElementById("sitead").value;
+  let found = false;
   saveddata.Sites.forEach(findIndex);
   function findIndex(item, index){
   const JsonSitename = saveddata.Sites[index].Adress;
     if(JsonSitename == sitead){
       document.getElementById("inside").innerHTML = saveddata.Sites[index].HTML;
-    }else{
+      found = true;
+      return;
+    }else if(found != true){
       document.getElementById("inside").innerHTML = saveddata.Sites[0].HTML;
     }
 }
@@ -88,6 +91,7 @@ function login(){
     }
 }
 function opentextfile(textid){
+  if( document.getElementById(saveddata.files[textid].name)){return;}
   console.table(saveddata.files[textid].insides);
   const thewindow = document.getElementById("Lbar");
   const newDiv = document.createElement("div");
@@ -147,5 +151,4 @@ function windowclose(idet){
     if(idet == "myweb"){
       webopen = false;
     }
-
 }
