@@ -1,6 +1,5 @@
 let myfilesopen = false;
 let webopen = false;
-let saveddata; 
 let user;
 let indexU = -1;
 fetch("./testfile.json")
@@ -9,11 +8,15 @@ fetch("./testfile.json")
 function setdata(data){
  saveddata = data;
 }
+function playAudio(audio){
+  var x = document.getElementById(audio)
+  x.play();
+}
 function openfiles(){
   if(myfilesopen){return}
   const thewindow = document.getElementById("Lbar");
   const newDiv = document.createElement("div");
-  newDiv.innerHTML = '<div id="mydiv" class="window"> <div id="mydivheader" class="handle"> <div class="wtext"><img src="mypc.png"> My Computer</div> <button class="Close" id="close" onclick="windowclose('+"'mydiv'"+')">X</button></div><div style="align-items: center; display: flex; gap: 25px;" id="cont"></div>';
+  newDiv.innerHTML = '<div id="mydiv" class="Mwindow"> <div id="mydivheader" class="title-bar"> <div class="wtext"><img src="mypc.png"> My Computer</div><div class="title-bar-controls"> <button class="Close" id="close" style="position: static; left: 4%; top: 7%;" onclick="windowclose('+"'mydiv'"+')">X</button></div></div><div style="align-items: center; display: flex; gap: 25px;" id="cont"></div>';
   document.body.insertBefore(newDiv, thewindow);
   dragElement(document.getElementById("mydiv"));
   fetch("./testfile.json")
@@ -28,7 +31,7 @@ function openfiles(){
       checkPerm();
       if(allowed != true){ return;}
         let newfile = document.createElement("div");
-        newfile.innerHTML = '<div id="icon'+data.files[index].name+'" class="evil" onclick="opentextfile('+index+')" style="width: 2%; height: 2%; font-size: smaller;"><img style="width: 35px; height: 35px;" src="textfileicon.png">' + data.files[index].name + '</div>';
+        newfile.innerHTML = '<div id="icon'+data.files[index].name+'" class="evil" onclick="opentextfile('+index+')" style="width: 35px; height: 35px; font-size: smaller; text-align: center;"><img style="width: 35px; height: 35px;" src="'+data.files[index].icon+'"><div style="">' + data.files[index].name + '</div></div>';
         console.table(data.insides)
         const cont = document.getElementById("cont");
         document.body.insertBefore(newfile, thewindow); 
@@ -49,7 +52,7 @@ function openweb(){
   if(webopen){return}
   const thewindow = document.getElementById("Lbar");
   const newDiv = document.createElement("div");
-  newDiv.innerHTML = '<div id="myweb" class="window"><div id="mywebheader" class="handle"><img style="margin-left: 1%; width: 15px; height: 15px;" src="theweb.png"></div><input id="sitead" type="text" style="width: 79%; position: absolute; left: 25; top: 10;"> <button style="position: absolute; right: 55; top: 10;" onclick="searchweb()">Search</button><button class="Close" id="close" onclick="windowclose('+"'myweb'"+')">X</button><div id="inside" style="overflow: scroll; width: 100%; height: 90%;"></div></div> ';
+  newDiv.innerHTML = '<div id="myweb" class="Mwindow"><div id="mywebheader" class="title-bar" style="height: 35px"><img style="margin-left: 1%; width: 15px; height: 15px; text-align: right;" src="theweb.png"></div><input id="sitead" value="ZaleskiCollect.com" type="text" style="width: 79%; position: absolute; left: 25; top: 10;"><div class="title-bar-controls"> <button style="position: absolute; right: 55; top: 10; height: 25px; width:45px" onclick="searchweb()">Search</button><button class="Close" id="close" onclick="windowclose('+"'myweb'"+')">X</button></div><div id="inside" class="inside"></div></div> ';
   document.body.insertBefore(newDiv, thewindow);
   dragElement(document.getElementById("myweb"));
 }
@@ -76,6 +79,7 @@ function login(){
       user = saveddata.Users[indexU].Username;
     }
   }
+  else{playAudio('error');}
   function findIndex(item, index){
     const JsonUsername = saveddata.Users[index].Username;
     if(JsonUsername == username){
@@ -87,13 +91,13 @@ function opentextfile(textid){
   console.table(saveddata.files[textid].insides);
   const thewindow = document.getElementById("Lbar");
   const newDiv = document.createElement("div");
-  newDiv.innerHTML = '<div id="'+saveddata.files[textid].name+'" class="window"> <div id="'+saveddata.files[textid].name+'header" class="handle"><div class="wtext"><img  style="width: 25px; height: 25px;" src="textfileicon.png">'+saveddata.files[textid].name+'</div><button class="Close" id="close" onclick="windowclose('+"'"+saveddata.files[textid].name+"'"+')">X</button></div><div>'+saveddata.files[textid].insides+'</div></div>';
+  newDiv.innerHTML = '<div id="'+saveddata.files[textid].name+'" class="Mwindow"> <div id="'+saveddata.files[textid].name+'header" class="title-bar"><div class="wtext"><img  style="width: 25px; height: 25px;" src="'+saveddata.files[textid].icon+'">'+saveddata.files[textid].name+'</div><div class="title-bar-controls"><button class="Close" id="close" onclick="windowclose('+"'"+saveddata.files[textid].name+"'"+')">X</button></div></div><div class="window-body">'+saveddata.files[textid].insides+'</div></div>';
   document.body.insertBefore(newDiv, thewindow);
   dragElement(document.getElementById(saveddata.files[textid].name));
 }
 window.addEventListener('load', function() {
-dragElement(document.getElementById("mydiv"));
-dragElement(document.getElementById("myweb"));
+dragElement(document.getElementById("myFault"));
+playAudio("startup");
 });
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
