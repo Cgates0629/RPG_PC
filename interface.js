@@ -1,5 +1,6 @@
 let myfilesopen = false;
 let webopen = false;
+let phoneopen = false;
 let user;
 let indexU = -1;
 fetch("./testfile.json")
@@ -13,10 +14,10 @@ function playAudio(audio){
   x.play();
 }
 function openfiles(){
-  if(myfilesopen){return}
+    if(document.getElementById("mydiv")){return;}
   const thewindow = document.getElementById("Lbar");
   const newDiv = document.createElement("div");
-  newDiv.innerHTML = '<div id="mydiv" class="Mwindow"> <div id="mydivheader" class="title-bar"> <div class="wtext"><img src="mypc.png"> My Computer</div><div class="title-bar-controls"> <button class="Close" id="close" style="position: static; left: 4%; top: 7%;" onclick="windowclose('+"'mydiv'"+')">X</button></div></div><div style="align-items: center; display: flex; gap: 25px;" id="cont"></div>';
+  newDiv.innerHTML = '<div id="mydiv" class="Mwindow"> <div id="mydivheader" class="title-bar"> <div class="wtext"><img src="mypc.png"> My Computer</div><div class="title-bar-controls"> <button class="Close" id="close" style="position: static; left: 4%; top: 7%;" onclick="windowclose('+"'mydiv'"+')">X</button></div></div><div style="align-items: center; display: flex; gap: 25px; flex-wrap: wrap;" id="cont"></div>';
   document.body.insertBefore(newDiv, thewindow);
   dragElement(document.getElementById("mydiv"));
   fetch("./testfile.json")
@@ -49,12 +50,20 @@ function openfiles(){
   }
 }
 function openweb(){
-  if(webopen){return}
+  if(document.getElementById("myweb")){return;}
   const thewindow = document.getElementById("Lbar");
   const newDiv = document.createElement("div");
   newDiv.innerHTML = '<div id="myweb" class="Mwindow"><div id="mywebheader" class="title-bar" style="height: 35px"><img style="margin-left: 1%; width: 15px; height: 15px; text-align: right;" src="theweb.png"></div><input id="sitead" value="ZaleskiCollect.com" type="text" style="width: 79%; position: absolute; left: 25; top: 10;"><div class="title-bar-controls"> <button style="position: absolute; right: 55; top: 10; height: 25px; width:45px" onclick="searchweb()">Search</button><button class="Close" id="close" onclick="windowclose('+"'myweb'"+')">X</button></div><div id="inside" class="inside"></div></div> ';
   document.body.insertBefore(newDiv, thewindow);
   dragElement(document.getElementById("myweb"));
+}
+function openphone(){
+  if(document.getElementById("mybuttons")){return;}
+  const thewindow = document.getElementById("Lbar");
+  const newDiv = document.createElement("div");
+  newDiv.innerHTML = '<div id="mybuttons" class="Mwindow" style="width: 250px; height: 200px; background-color: silver; top: 250px; min-height: 100px; min-width: 100px;"> <div id="mybuttonsheader" class="title-bar"><div class="wtext" style="font-size: small;"><img style="width: 25px; height: 25px;" src="telephone-icon-3614.png">E.C.T</div><div class="title-bar-controls"><button class="Close" id="close" onclick="windowclose('+"'mybuttons'"+')">X</button></div></div><div class="window-body" style="min-height: 100px; min-width: 100px;"></b> <input id="phone" value="" type="tel" style="width: 100%;" disabled><br> <br> <button onclick="dial('+"'1'"+'), playAudio('+"'1'"+')" style="width: 25px; height: 25px;">1</button><button onclick="dial('+"'2'"+'), playAudio('+"'2'"+')">2</button><button onclick="dial('+"'3'"+'), playAudio('+"'3'"+')">3</button><br> <button onclick="dial('+"'4'"+'), playAudio('+"'4'"+')">4</button><button onclick="dial('+"'5'"+'), playAudio('+"'5'"+')">5</button><button onclick="dial('+"'6'"+'), playAudio('+"'6'"+')">6</button><br> <button onclick="dial('+"'7'"+'), playAudio('+"'7'"+')">7</button><button onclick="dial('+"'8'"+'), playAudio('+"'8'"+')">8</button><button onclick="dial('+"'9'"+'), playAudio('+"'9'"+')">9</button><br> <button onclick="startcall()">&#9742;</button><button onclick="dial('+"'0'"+'), playAudio('+"'0'"+')">0</button><button onclick="dial('+"'-1'"+')">&#8617;</button> <div id="audios"></div> </div> </div>';
+  document.body.insertBefore(newDiv, thewindow);
+  dragElement(document.getElementById("mybuttons"));
 }
 function searchweb(){
   const sitead = document.getElementById("sitead").value;
@@ -80,6 +89,12 @@ function login(){
       document.getElementById("homescreen").style.visibility = "visible";
       document.getElementById("loginscreen").style.visibility = "hidden";
       user = saveddata.Users[indexU].Username;
+      if(user == "VizlzzpclVjjbsapza" || user == "AdminGuy2"){
+          const thewindow = document.getElementById("Lbar");
+          const newDiv = document.createElement("div");
+          newDiv.innerHTML = '<div class="app" onclick="openphone()" style="top: 22%; text-align: center;"><img style="width: 35px; height: 35px;" src="telephone-icon-3614.png"> <div class="apptext">External Communication Tapper</div></div>';
+          document.body.insertBefore(newDiv, thewindow);
+      }
     }
   }
   else{playAudio('error');}
@@ -101,6 +116,7 @@ function opentextfile(textid){
 }
 window.addEventListener('load', function() {
 dragElement(document.getElementById("myFault"));
+dragElement(this.document.getElementById("mybuttons"));
 playAudio("startup");
 });
 function dragElement(elmnt) {
@@ -146,9 +162,31 @@ function dragElement(elmnt) {
 function windowclose(idet){
     const element = document.getElementById(idet);
         element.remove();
-    if(idet == "mydiv"){
-    myfilesopen = false;}
-    if(idet == "myweb"){
-      webopen = false;
+}
+function dial(num){
+  let phonebox = document.getElementById("phone");
+  let v = phonebox.value;
+  if(num == -1){
+    phonebox.value = v.slice(0, v.length-1);
+    playAudio(num.toString());
+  }
+  else{
+    phonebox.value += num;
+  }
+}
+function startcall(){
+  let phonebox = document.getElementById("phone");
+  let found = false;
+  saveddata.Numbers.forEach(findIndex);
+  function findIndex(item, index){
+  const JsonSitename = saveddata.Numbers[index].nu;
+    if(JsonSitename == phonebox.value){
+      document.getElementById("audios").innerHTML = saveddata.Numbers[index].file;
+      found = true;
+      return;
     }
+}
+}
+function checkpasskey(){
+  //let passkey = ;
 }

@@ -1,0 +1,179 @@
+<html>
+<head>
+<title>false</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+<!-- <script src="interface.js" w></script> -->
+<style>
+body, html {
+  height: 100%;
+  font-family: "Inconsolata", sans-serif;
+}
+
+.bgimg {
+  background-position: center;
+  background-size: cover;
+  background-image: url("/w3images/coffeehouse.jpg");
+  min-height: 75%;
+}
+
+.menu {
+  display: none;
+}
+</style>
+</head>
+<body>
+
+<!-- Links (sit on top) -->
+<div class="w3-top">
+  <div class="w3-row w3-padding w3-black">
+    <div class="w3-col s3">
+      <a onclick="sethieght('home')" class="w3-button w3-block w3-black">HOME</a>
+    </div>
+    <div class="w3-col s3">
+      <a onclick="sethieght('about')" class="w3-button w3-block w3-black">ABOUT</a>
+    </div>
+    <div class="w3-col s3">
+      <a onclick="sethieght('menu')" class="w3-button w3-block w3-black">BOOKS</a>
+    </div>
+    <div class="w3-col s3">
+      <a onclick="sethieght('where')" class="w3-button w3-block w3-black">WHERE</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home" style="background-image: url(mariia-zakatiura-t7zYZzO_CX0-unsplash.jpg); background-position: 10px;">
+  <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
+    <span class="w3-tag">Open from 3am to 4am</span>
+  </div>
+  <div class="w3-display-middle w3-center">
+    <span class="w3-text-white" style="font-size:90px; text-shadow: -2px -2px 0 black">Old Light<br>Book Emporium</span>
+  </div>
+  <div class="w3-display-bottomright w3-center w3-padding-large">
+    <span class="w3-text-white"></span>
+  </div>
+</header>
+
+<!-- Add a background color and large text to the whole page -->
+<div class="w3-sand w3-grayscale w3-large">
+
+<!-- About Container -->
+<div class="w3-container">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">ABOUT THE EPMORIUM</span></h5>
+    <p id="about">Ever since 1978 me and my wife have had an extrme fondness for collecting the strange and rare books we come across. After Jurgen Leitner first gave us the The Restoration of the Self our eyes were opened to what lies deep beyond the fog.</p>
+    <p>If you too wish to expand the shape of your soul. Our books are for you.</p>
+    <div class="w3-panel w3-leftbar w3-light-grey">
+      <p><i>"Books are best read by the old lamp light. Only for those for whom the fog is see-through." Dhzo Fvby Zvbs.</i></p>
+      <p>Writer and Owner: Liv Brown</p>
+    </div>
+    <p><strong>Opening hours:</strong> Everyday from 3am to 4am.</p>
+    <p ><strong>Number:</strong> 660-555-0190</p>
+  </div>
+</div>
+
+<!-- Menu Container -->
+<div class="w3-container">
+  <div class="w3-content" style="max-width:700px">
+ 
+    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">OUR BOOKS</span></h5>
+  
+    <div class="w3-row w3-center w3-card w3-padding">
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Eat');" id="myLink">
+        <div class="w3-col s6 tablink">Classics</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Drinks');">
+        <div class="w3-col s6 tablink">New Finds</div>
+      </a>
+    </div>
+    <div id="menu"></div>
+    <div id="Eat" class="w3-container menu w3-padding-48 w3-card">
+      <h5>The Boneturner's Tale</h5>
+      <p class="w3-text-grey">Currently Unavailable<h style="color: rgba(240, 248, 255, 0);"> E</h></p><br>
+    
+      <h5>A Butcher's Guide to Cutting Flesh</h5>
+      <p class="w3-text-grey">For all your cutting needs, will teach you everything you need to know for preparing all types of flesh.<h style="color: rgba(240, 248, 255, 0);"> C</h></p><br>
+    
+      <h5>The Anatomy of Melancholy</h5>
+      <p class="w3-text-grey">"A Book that truly gets me" - "Tanner Watts"<h style="color: rgba(240, 248, 255, 0);"> X</h></p><br>
+    
+      <h5>Dictionnaire Infernal</h5>
+      <p class="w3-text-grey">A 1908 version of the 1818 classic guide to demonology. Best read in a safe space and with a loaded gun at your side.<h style="color: rgba(240, 248, 255, 0);"> L</h></p><br>
+    </div>
+
+    <div id="Drinks" class="w3-container menu w3-padding-48 w3-card">
+      <h5>Ten Minutes Past Midnight</h5>
+      <p class="w3-text-grey">Best read when the sun is still high in the sky.<h style="color: rgba(240, 248, 255, 0);"> N</h></p><br>
+    
+      <h5>The Rise of Pope Leo XIV</h5>
+      <p class="w3-text-grey">A simple tale of the church.<h style="color: rgba(240, 248, 255, 0);"> O</h></p><br>
+    
+      <h5> WHISPERS IN WHITE MATTER</h5>
+      <p class="w3-text-grey">A book that lets you really understand the mind of the author.<h style="color: rgba(240, 248, 255, 0);"> I</p><br>
+    
+    </div>  
+  </div>
+</div>
+
+<!-- Contact/Area Container -->
+<div class="w3-container" style="padding-bottom:32px;">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">WHERE TO FIND US</span></h5>
+    <p>Intrested in our wares? Simply put in the passkey and the id of the book you wish to buy and we will reach out to you.</p>
+    <div>
+      <p><input id="passkey" class="w3-input w3-padding-16 w3-border" type="text" placeholder="Passkey" required name="Name"></p>
+      <p id="where"><button class="w3-button w3-black" style="visibility: visible;" id="checkpass" onclick="checkpasskey()">Check Passkey</button></p>
+      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Book ID" style="visibility: hidden;" id="bk"></p>
+      <p><button class="w3-button w3-black" type="submit" style="visibility: hidden;" id="request" onclick="checkbookid()">Submit Request</button></p>
+      <p style="visibility: hidden;" id="message">We thank you for your interest in our most wonderful wares we shall be in contact with you soon. May your trips through the fog be ever fruitful. (If you find this, send me a screenshot so I know lol)</p>
+    </div>
+  </div>
+</div>
+
+<!-- End page content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-light-grey w3-padding-48 w3-large">
+</footer>
+
+<script>
+// Tabbed Menu
+function checkpasskey(){
+  let passkey = document.getElementById("passkey").value;
+  if(passkey == "Reading by lamplight"){
+    document.getElementById("bk").style.visibility = "visible";
+    document.getElementById("request").style.visibility = "visible";
+    document.getElementById("checkpass").style.visibility = "hidden";
+  }
+}
+function checkbookid(){
+  let bookid = document.getElementById("bk").value;
+  if(bookid == "lexicon" || bookid == "LEXICON"){
+    document.getElementById("message").style.visibility = "visible";
+  }
+}
+function openMenu(evt, menuName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("menu");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
+  }
+  document.getElementById(menuName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-dark-grey";
+}
+function sethieght(num){
+  window.scrollTo(0, document.getElementById(num).offsetTop);
+}
+document.getElementById("myLink").click();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<audio id="wrong">
+  <source src="close-door-382723.mp3">
+</audio>
+<audio id="right">
+  <source src="opening-door-411632.mp3">
+</audio>
+<title>Reboot</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+  background-image: url('christmas-background-1535201_1280.jpg');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+</style>
+</head>
+<body>
+<div id="thepath" style="visibility: hidden; background-color: black; width: 100%; height: 100%;">
+    <div id="door">
+    <img src="pngimg.com - door_PNG17612.png" style="height: 350px; width: 225px; position: absolute; right: 25%; top: 25%;" onclick="thedoor('R')" name="door">
+    <img src="pngimg.com - door_PNG17612.png" style="height: 350px; width: 225px; position: absolute; left: 45%; top: 25%;" onclick="thedoor('M')" id="door">
+    <img src="pngimg.com - door_PNG17612.png" style="height: 350px; width: 225px; position: absolute; left: 25%; top: 25%;" onclick="thedoor('L')" id="door">
+    </div>
+    <div id="final"style="color: whitesmoke; position: fixed; top: 50%; right: 50%; visibility: hidden;" class="w3-jumbo w3-animate-top">An answer lies bellow the bridge.</div>
+</div>
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white" style="visibility: visible; position: fixed; top: 0; right: 0; width: 100%; height: 100%;" id="rebot">
+  <div class="w3-display-topleft w3-padding-large w3-xlarge">
+  </div>
+  <div class="w3-display-middle">
+    <h1 class="w3-jumbo w3-animate-top" style="text-shadow: -5px -5px 0 silver; color: black;" onclick="firststep()">REBOOT YOUR SOUL</h1>
+    <hr class="w3-border-grey" style="margin:auto;width:40%">
+    <p class="w3-large w3-center" style="color: black;">Novemeber 13th</p>
+  </div>
+</div>
+ 
+</body>
+<script>
+let x = 0;
+const r =["L","M","R","R","R", "M", "L", "M", "M", "L", "L", "R", "R", "L", "R"]
+function firststep(){
+    document.getElementById("rebot").style.visibility = "hidden";
+    document.getElementById("thepath").style.visibility = "visible";
+}
+function thedoor(door){
+  if(door == r[x]){
+    x+=1;
+  }else{
+    x = 0;
+  }
+  if(x==r.length){
+    document.getElementById("door").style.visibility = "hidden";
+    document.getElementById("final").style.visibility = "visible";
+  }
+}
+</script>
+</html>

@@ -1,19 +1,48 @@
 <html>
 <script src="interface.js" w></script>
 <link rel="stylesheet" href="PC-CSS.css">
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/98.css"
->
+<link rel="stylesheet" href="https://unpkg.com/98.css">
 <audio id="clickaudio">
   <source src="mouse-click-153941.mp3">
 </audio>
 <audio id="error">
   <source src="windows-error-sound-effect-35894.mp3">
 </audio>
-<audio id="startup" autoplay="autoplay">
+<audio id="startup" autoplay="autoplay" muted>
   <source src="windows-xp-startup.mp3">
 </audio>
+<nu>
+<audio id="1">
+  <source src="one.mp3">
+</audio>
+<audio id="2">
+  <source src="two.mp3">
+</audio>
+<audio id="3">
+  <source src="three.mp3">
+</audio>
+<audio id="4">
+  <source src="four.mp3">
+</audio>
+<audio id="5">
+  <source src="five.mp3">
+</audio>
+<audio id="6">
+  <source src="six.mp3">
+</audio>
+<audio id="7">
+  <source src="seven.mp3">
+</audio>
+<audio id="8">
+  <source src="eight.mp3">
+</audio>
+<audio id="9">
+  <source src="nine.mp3">
+</audio>
+<audio id="0">
+  <source src="zero.mp3">
+</audio>
+</nu>
 <body onclick="playAudio('clickaudio')">
   <div id="loginscreen" class="window" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background-color: silver; width: 35%; height: 15%; ">
     <div class="title-bar" style="font-size: x-small; color: whitesmoke; text-shadow: -2px -2px 0 black;"><div class="title-bar-text" style="width: 1000px;"> Computer Login </div> </div>
@@ -23,12 +52,12 @@
     <button style="position: absolute; top: 35%; left: 80%; width: 15%; font-size: x-small;" onclick="login()"> OK </button>
     </div>
   </div>
-  <div id="homescreen" style="visibility: hidden;">
-<div id="myFault" class="Mwindow" style="width: 400px; height: 200px; background-color: silver; top: 250px;"> 
+  <div id="homescreen" style="visibility: hidden; display: flex;">
+<div id="myFault" class="Mwindow" style="width: 400px; height: 200px; background-color: silver; top: 250px; z-index: 2;"> 
   <div id="myFaultheader" class="title-bar"><div class="wtext" style="font-size: small;">
     <img style="width: 25px; height: 25px;" src="warn.webp">Warning</div><div class="title-bar-controls">
-      <button class="Close" id="close" onclick="windowclose('myFault')">X</button></div></div><div class="window-body">Due to Your Access Level the functions of the device will be limited for you at this time.  <br>  <br> <b> The contents of this device are for the eyes of the person currently logined in and that person only.</b> <button onclick="windowclose('myFault')"><b>Understood</b></button></div>
-    </div>
+      <button class="Close" id="close" onclick="windowclose('myFault')">X</button></div></div><div class="window-body">New data has been detected some files might change and new ones might be added. <br>  <br> <b> The contents of this device are for the eyes of the person currently logined in and that person only.</b> <button onclick="windowclose('myFault')"><b>Understood</b></button></div>
+  </div>
   <div class="app" onclick="openfiles()"><img src="mypcbig.png"> <div class="apptext">My Computer</div></div>
   <div class="app" onclick="openweb()" style="top: 15%; text-align: center;"><img style="width: 35px; height: 35px;" src="theweb.png"> <div class="apptext">The Web</div></div>
 <div class="Lbar">
