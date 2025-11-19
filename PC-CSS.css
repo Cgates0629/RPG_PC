@@ -34,6 +34,9 @@ body {
 .invoce{
     width: 90%; height: 90%; background-image: url("Invoice.PNG"); background-size: 100% 100%; background-repeat: no-repeat; overflow: hidden;
 }
+.bcard{
+    width: 90%; height: 90%; background-image: url("1.png"); background-size: 100% 100%; background-repeat: no-repeat; overflow: hidden;
+}
 .muse{
     background-color: dimgrey; background-image: url("museum-background-ar4wuzdgkobt7g65.jpg"); height: 1000px; width: 1000px;
 }
