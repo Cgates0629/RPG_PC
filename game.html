@@ -1,0 +1,63 @@
+<html>
+    <audio id="gamestart" loop>
+    <source src="dark_ambient-16862.mp3">
+    </audio>
+    <audio id="steps">
+    <source src="pasos-steps-40285.mp3">
+    </audio>
+    <audio id="kill">
+    <source src="deadly-strike-352458.mp3">
+    </audio>
+    <audio id="phit">
+    <source src="item-swing-sfx-3-409079.mp3">
+    </audio>
+    <script src="GameJS.js"></script>
+    <body class='screen' style='background-color: black; color: lightgreen; overflow-x: hidden;'>
+        <div style="border: 2px green; width: 100%; height: 90%; overflow: auto; overflow-x: hidden;" id="GameScreen">
+            <p style="text-indent: 200px;">Fort of Metus (Demo)</p>
+            <pre>                
+                                 ____                                         
+                              .-"    `-.      ,                               
+                            .'          '.   /j\                              
+                           /              \,/:/#\                /\           
+                          ;              ,//' '/#\              //#\          
+                          |             /' :   '/#\            /  /#\         
+                          :         ,  /' /'    '/#\__..--""""/    /#\__      
+                           \       /'\'-._:__    '/#\        ;      /#, """---
+                            `-.   / ;#\']" ; """--./#J       ':____...!       
+                               `-/   /#\  J  [;[;[;Y]         |      ;        
+""""""---....             __.--"/    '/#\ ;   " "  |     !    |   #! |        
+             ""--.. _.--""     /      ,/#\'-..____.;_,   |    |   '  |        
+                   "-.        :_....___,/#} "####" | '_.-",   | #['  |        
+                      '-._      |[;[;[;[;|         |.;'  /;\  |      |        
+                      ,   `-.   |        :     _   .;'    /;\ |   #" |        
+                      !      `._:      _  ;   ##' .;'      /;\|  _,  |        
+                     .#\"""---..._    ';, |      .;{___     /;\  ]#' |__....--
+          .--.      ;'/#\         \    ]! |       "| , """--./_J    /         
+         /  '%;    /  '/#\         \   !' :        |!# #! #! #|    :`.__      
+        i__..'%] _:_   ;##J         \      :"#...._!   '  "  "|__  |    `--.._
+         | .--""" !|""""  |"""----...J     | '##"" `-._       |  """---.._    
+     ____: |      #|      |         #|     |          "]      ;   ___...-"T,  
+    /   :  :      !|      |   _______!_    |           |__..--;"""     ,;MM;  
+   :____| :    .-.#|      |  /\      /#\   |          /'               ''MM;  
+    |""": |   /   \|   .----+  ;      /#\  :___..--"";                  ,'MM; 
+   _Y--:  |  ;     ;.-'      ;  \______/#: /         ;                  ''MM; 
+  /    |  | ;_______;     ____!  |"##"""MM!         ;                    ,'MM;
+ !_____|  |  |"#"#"|____.'""##"  |       :         ;                     ''MM  
+  | """"--!._|     |##""         !       !         :____.....-------"""""" |'
+  |          :     |______                        ___!_ "#""#""#"""#"""#"""|  
+__|          ;     |MM"MM"""""---..._______...--""MM"MM]                   |   
+  "\-.      :      |#                                  :                   |  
+    /#'.    |      /##,                                !                   |  
+   .',/'\   |       #:#,                                ;       .==.       |  
+  /"\'#"\',.|       ##;#,                               !     ,'||||',     |  
+        /;/`:       ######,          ____             _ :     M||||||M     |  
+       ###          /;"\.__"-._   """                   |===..M!!!!!!M_____|  
+                           `--..`--.._____             _!_                    
+                                          `--...____,="_.'`-.____        fsc</pre>
+            <p>Welcome to the Fort of Metus. To begin the game just type start id into the chat and hit enter.</p>
+            <div id="bottomGame"></div>
+        </div>
+        <input type="text" id="inputfield" style="width: 100%; position: absolute; bottom: 5%; background-color: black; color: green;" onkeydown="enter(event)">
+    </body>
+</html>
