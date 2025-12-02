@@ -424,7 +424,7 @@ function setclass(usern){
       Cname = "Calx";
       hp = 25;
       maxhp = 25;
-      inv = [Robes, BaseballBat, AncTome];
+      inv = [Robes, BaseballBat, AncTome, health, health, health, health];
       equipment = [BaseballBat, Robes, AncTome];
       enterRoom("Hidden Study");
       break;
@@ -433,7 +433,7 @@ function setclass(usern){
       Cname = "Nicholas";
       hp = 40;
       maxhp = 40;
-      inv = [Leather, CKnife, BTome];
+      inv = [Leather, CKnife, BTome, health, health, health, health];
       equipment = [CKnife, Leather, BTome];
       enterRoom("Stables");
       break;
@@ -442,7 +442,7 @@ function setclass(usern){
       Cname = "Thomas";
       hp = 25;
       maxhp = 25;
-      inv = [Traveler, Gun, RTome];
+      inv = [Traveler, Gun, RTome, health, health, health, health];
       equipment = [Gun, Traveler, RTome];
       enterRoom("Castle Gate");
       break;
@@ -451,7 +451,7 @@ function setclass(usern){
       Cname = "Vinny";
       hp = 30;
       maxhp = 30;
-      inv = [Traveler, Gun, ATome];
+      inv = [Traveler, Gun, ATome, health, health, health, health];
       equipment = [Gun, Traveler, ATome];
       enterRoom("Castle Gate");
       document.getElementById("gamestart").play();
@@ -462,7 +462,7 @@ function setclass(usern){
       Cname = "Lyra";
       hp = 20;
       maxhp = 20;
-      inv = [JesterOutfit, Lamp, JTome];
+      inv = [JesterOutfit, Lamp, JTome, health, health, health, health];
       equipment = [Lamp, JesterOutfit, JTome];
       enterRoom("Castle Gate");
       break;
@@ -471,7 +471,7 @@ function setclass(usern){
       Cname = "Cecil";
       hp = 20;
       maxhp = 20;
-      inv = [Robes, Brush, PTome];
+      inv = [Robes, Brush, PTome, health, health, health, health];
       equipment = [Brush, Robes, JTome];
       enterRoom("Painter's Tower");
       break;
@@ -480,7 +480,7 @@ function setclass(usern){
       Cname = "Amanda";
       hp = 45;
       maxhp = 45;
-      inv = [Robes, BaseballBat, AncTome];
+      inv = [Robes, BaseballBat, AncTome, health, health, health, health];
       equipment = [BaseballBat, Robes, AncTome];
       skills = [];
       break;
@@ -1325,3 +1325,4 @@ function damageplayer(amount){
         GS.innerHTML+=("<p> You've been slain.</p>")
       }
 }
+
