@@ -926,7 +926,7 @@ function strike(target, skillstrike, attackminus){
   if(turn != 0){return;}
   if(foes[target-1].hp <= 0){GS.innerHTML+=("<p> That target is already dead. Pick another target. </p>"); return;}
   let targetdodge = 0;
-  if(find(foes[target-1].cons != 2000){
+  if(find(foes[target-1].cons, "Dodge") != 2000){
       targetdodge += target.cons[find(target.cons, "Dodge")].strength;
     }
   if(hitroll > foes[target-1].AC + targetdodge){
@@ -1325,5 +1325,6 @@ function damageplayer(amount){
         GS.innerHTML+=("<p> You've been slain.</p>")
       }
 }
+
 
 
