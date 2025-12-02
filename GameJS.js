@@ -85,6 +85,9 @@ class skill {
         if(find(conditons, "Focus") != 2000){
             attackplus += conditons[find(conditons, "Focus")].strength;
          }
+        if(find(foes[target-1].cons, "Slowness") != 2000){
+          attackplus += foes[target-1].cons[find(foes[target-1].cons, "Slowness")].strength;
+        }
         let hitroll = Math.floor(Math.random() * 20) + equipment[0].hitbonus + attackplus;
         GS.innerHTML+=("<p> You got a "+hitroll+" on your attempt to hit. </p>");
         let targetdodge = 0;
@@ -188,6 +191,7 @@ const lowfocus = new conditon(3,2,"Focus");
 const lowweakness = new conditon(3,2,"Weakness");
 const lowbroken = new conditon(3,2,"Broken");
 const lowslow = new conditon(3,2,"Slowness")
+const inflictlowslow = new effect("Addcon",lowslow,null,null);
 const inflictlowdiz = new effect("Addcon",lowdizzy,null,null);
 const inflictHighDiz = new effect("Addcon",lowdizzy,null,null);
 const inflictlowfire = new effect("Addcon",lowfire,null,null);
@@ -201,13 +205,14 @@ const GainFocus = new effect("PAddcon",lowfocus,null,null);
 const GainlowDizzy = new effect("PAddcon",lowdizzy,null,null);
 const LowHeal = new effect("Heal",null,4,null);
 const GreaterHeal = new effect("Heal",null,8,null);
-const FoulCon = new skill([inflictlowdiz, new effect("dmg",null,12,"Holy")],"Smite",3,"You ask the 'holy' things above to strike down your foes doing 12 Holy damage and making it harder for them to hit. Example: use Smite SP Cost: 3",true,true);
+const FoulCon = new skill([inflictlowdiz, inflictlowbroken, inflictlowweakness, inflictlowslow, inflictlowfire, new effect("dmg",null,4,"Foul")],"Foul Concoction",5,"You throw a foul concoction of random liquids at your target giving them many debuffs and doing some damage. Example: use Foul Concoction SP Cost: 5",true,true);
 const DazzalB = new skill([inflictlowdiz,GainDodge],"Dazzling Bomb",2,"Throw out a colorful explosive making you very hard to hit for 2 turns. Example: use Dazzling Bomb SP Cost: 2",false);
 const Smite = new skill([inflictlowdiz, new effect("dmg",null,12,"Holy")],"Smite",3,"You ask the 'holy' things above to strike down your foes doing 12 Holy damage and making it harder for them to hit. Example: use Smite SP Cost: 3",true,true);
 const HealingPrayer = new skill([GreaterHeal],"Healing Prayer",2,"Heal for 8 HP. Example: use Healing Prayer SP Cost: 2",false,false);
 const RProtection = new skill([Gainprot],"Protection",2,"Protect your self for 4 rounds reducing damage taken by 4. Example: use Protection SP Cost: 2",false,false);
-const HBlast = new skill([new effect("dmg",null,2,"Holy")],"Holy Wave",2,"Send out a blast of Holy damage doing a small amount of damage to all foes. Example: use Holy Wave SP Cost: 2",false);
-const FakeOut = new skill([inflictlowdiz, new effect("dmg",null,5,"ink")],"Fakeout",2,"You use the tatics of misdriection to fakeout your target before coming in with another strike making them dizzy for 3 rounds deals 5 damage. Example: use Fakeout SP Cost: 1",true,true);
+const HBlast = new skill([new effect("dmg",null,3,"Holy"),],"Holy Wave",2,"Send out a blast of Holy damage doing a small amount of damage to all foes. Example: use Holy Wave SP Cost: 2",false); 
+const LavaWave = new skill([new effect("dmg",null,8,"Fire"),inflictlowslow],"Lava Wave",6,"Send out a wave of lave to trap and burn all targets. Example: use Holy Wave SP Cost: 6",false);
+const FakeOut = new skill([inflictlowdiz, new effect("dmg",null,5,"Blunt")],"Fakeout",2,"You use the tatics of misdriection to fakeout your target before coming in with another strike making them dizzy for 3 rounds deals 5 damage. Example: use Fakeout SP Cost: 1",true,true);
 const Enthrall = new skill([inflictHighDiz, GainlowDizzy],"Enthrall",2,"You grab and keep another creature's attention making it much harder for them to hit you by 8 but also makes it harder for you to hit any foes by 2 for 3 rounds. Example: use Enthrall SP Cost: 1",false,true);
 const Bandage = new skill([LowHeal],"Bandage",2,"Heal for 4 HP. Example: use Bandage SP Cost: 2",false,false);
 const PaintEnd = new skill([new effect("dmg",null,9,"ink")],"Paint End",5,"You paint the world around you into a broken and rotten one dealing 9 damage to all targets. Example: use Paint End SP Cost: 5",false,false);
@@ -246,7 +251,7 @@ const RoTome = new offhand(null,"Rogue's Tome", [PanicStrikes, FakeOut, DazzalB]
 const PeTome = new offhand(null,"Prayer Tome", [HealingPrayer, Smite, RProtection, HBlast], "An old and dusty prayer tome with old blessings kept inside.");
 const AlTome = new offhand(null,"Alchemist's Tome", [Dflame, Enthrall, Bandage, CareOb, FoulCon], "A mess of scrapped together journal pages with recipes for potions kept inside.");
 const AncTome = new offhand(null,"Ancient Tome", [Mess, Dflame], "An old and dusty tome with old spells kept inside.");
-const FTome = new offhand(null,"Flame Tome", [Dflame, LargeFlame], "An old and dusty tome with ancient fire spells kept inside.");
+const FTome = new offhand(null,"Flame Tome", [Dflame, LargeFlame, Flame], "An old and dusty tome with ancient fire spells kept inside.");
 const Godblast = new skill([inflictlowdiz ,new effect("dmg",null,1000,"Godblast")],"Godblast",1,"God blasted",false,false);
 const rat = new foe(6,6,"Rat",["bite"],[]);
 const Noble = new foe(22,15,"Noble",["Cup","Curse","Cut","Heal"],["ink"]);
@@ -273,7 +278,7 @@ const TheOutsider = new foe(40,13,"The Outsider",["That Beutiful Music","Multila
 // tommy
 const TheSilentwoods = new foe(55,0,"The Silent Woods",["Remove","Forget","Silince"],[]);
 
-const RoItem = new item("One of the corpses seems to have a tight grip around a Rogue Tome.","tome", "Rogue's Tome", RoTome);
+const RoItem = new item("One of the corpses seems to have a tight grip around a Rogue's Tome.","tome", "Rogue's Tome", RoTome);
 const MBItem = new item("Sitting on a weapon rack in the back is sharp Green Sword", "a set of nice cloth", "Green Sword", Mbane);
 const longbowItem = new item(" holding a Longbow,", "a set of nice cloth", "Longbow", Longbow);
 const emptyItem = new item("", "", "");
@@ -611,6 +616,7 @@ function enter(event){
           else if(find(inv,input) != 2000){
             switch(input){
               case "Red Potion":
+                GS.innerHTML+=("<p> You. </p>");
                 hp += 10;
                 if(hp>maxhp){hp = maxhp;}
                 removeitem("Red Potion");
@@ -928,6 +934,9 @@ function strike(target, skillstrike, attackminus){
   if(find(foes[target-1].cons, "Dodge") != 2000){
       targetdodge += foes[target-1].cons[find(foes[target-1].cons, "Dodge")].strength;
     }
+    if(find(foes[target-1].cons, "Slowness") != 2000){
+      attackplus += foes[target-1].cons[find(foes[target-1].cons, "Slowness")].strength;
+    }
   if(hitroll > foes[target-1].AC + targetdodge){
       document.getElementById("phit").play();
       damagefoe(damageroll,foes[target-1],equipment[1].damtype,true)
@@ -1080,8 +1089,10 @@ function foeturn()
         foeattack(2,6,1,"Slash");
         break;
       case "Burn":
-          foeattack(4,4,4,"Burn");
+        if(foeattack(4,4,6,"Burn") == true){
           addcondition(highfire);
+          GS.innerHTML+=("<p>Has thrown boling Oil at you.</p>")
+        }
         break;
       case "Splash":
         if(foeattack(0,0,4,"Splash") == true){  
