@@ -125,7 +125,7 @@ class skill {
       });
     }
     else{
-        foeaddcondition(foes[target], cond);
+        foeaddcondition(foes[target-1], cond);
     }
   }
   PAddcon(cond){
@@ -136,7 +136,7 @@ class skill {
   }
   Heal(num){
     hp+= num;
-    GS.innerHTML+=("<p> Healed for"+num+" </p>");
+    GS.innerHTML+=("<p> Healed for "+num+" </p>");
     if(hp > maxhp){
       hp = maxhp;
       GS.innerHTML+=("<p> Healed to Max. </p>");
@@ -959,9 +959,7 @@ function damagefoe(amount, target, type, neeedmess){
   if(find(target.cons, "Broken") != 2000){
     amount += target.cons[find(target.cons, "Broken")].strength;
   }
-  if(find(conditons, "Weakness") != 2000){
-
-  }
+  if(amount < 0){amount = 0;}
   target.hp -= amount;
  if(neeedmess != false){GS.innerHTML+=("<p> You've hit "+target.type+" for "+amount+" damage. </p>");}
  if(find(conditons,"Attach Strings") != 2000){
@@ -1018,7 +1016,7 @@ function foeturn()
       element.rounds -= 1;
       if(element.rounds <= 0){
         GS.innerHTML+=("<p> You are no longer effected by "+element.type+"</p>")
-        element.type == "";
+        conditons[find(conditons,element.type)].type == "";
       }
     });
       playerturn();
@@ -1222,9 +1220,9 @@ function foeturn()
     turn+=1;
     currentfoe.cons.forEach(element => { 
       element.rounds -= 1;
-      if(element.rounds <= 0){
-        GS.innerHTML+=("<p> The "+currentfoe.type+" is no longer suffering from "+element.type+"</p>")
-        element.type == "";
+      if(element.rounds <= 0 && element.type != ""){
+        GS.innerHTML+=("<p> The "+currentfoe.type+" is no longer effected by "+element.type+"</p>")
+        currentfoe.cons[find(currentfoe.cons, element.type)].type == "";
       }
       
     });
@@ -1269,7 +1267,7 @@ function foeattack(mindamage, maxdamage, chance, sname){
 
 function addcondition(conditont){
  conditons.forEach(element => {
-  if(element.type == conditont)
+  if(element.type == conditont.type)
     return;
  });
  if(conditont.type == "Weakness" && equipment[1].type == "Fancy Clothes"){
@@ -1281,7 +1279,7 @@ function addcondition(conditont){
 }
 function foeaddcondition(target, conditont){
  target.cons.forEach(element => {
-  if(element.type == conditont)
+  if(element.type == conditont.type)
     return;
  });
   target.cons.push(new conditon(conditont.rounds, conditont.strength, conditont.type));
@@ -1325,4 +1323,3 @@ function damageplayer(amount){
         GS.innerHTML+=("<p> You've been slain.</p>")
       }
 }
-
