@@ -1246,7 +1246,7 @@ function foeattack(mindamage, maxdamage, chance, sname){
   if(find(conditons, "Slowness") != 2000){
       mins -= conditons[find(conditons, "Slowness")].strength;
   }
-    if(find(currentfoe.cons, "Focus") != 2000){
+    if(find(foes[turn-1].cons, "Focus") != 2000){
       mins -= currentfoe.cons[find(conditons, "Focus")].strength;
   }
   let hitroll = Math.floor(Math.random() * 20) + 1;
@@ -1255,7 +1255,7 @@ function foeattack(mindamage, maxdamage, chance, sname){
   console.log(hitroll);
   if(hitroll+chance >= equipment[1].AC){
     let damageroll = Math.floor(Math.random() * (maxdamage-mindamage)) + mindamage;
-    if(find(currentfoe.cons, "Power") != 2000){
+    if(find(foes[turn-1].cons, "Power") != 2000){
       damageroll += currentfoe.cons[find(currentfoe.cons, "Power")].strength;
   }
     GS.innerHTML+=("<p> The "+foes[turn-1].type+" used "+sname+" and hit you for "+damageroll+" damage </p>")
@@ -1325,3 +1325,4 @@ function damageplayer(amount){
         GS.innerHTML+=("<p> You've been slain.</p>")
       }
 }
+
