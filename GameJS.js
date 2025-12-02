@@ -424,7 +424,7 @@ function setclass(usern){
       Cname = "Calx";
       hp = 25;
       maxhp = 25;
-      inv = [Robes, BaseballBat, AncTome, health, health, health, health];
+      inv = [Robes, BaseballBat, AncTome];
       equipment = [BaseballBat, Robes, AncTome];
       enterRoom("Hidden Study");
       break;
@@ -433,7 +433,7 @@ function setclass(usern){
       Cname = "Nicholas";
       hp = 40;
       maxhp = 40;
-      inv = [Leather, CKnife, BTome, health, health, health, health];
+      inv = [Leather, CKnife, BTome];
       equipment = [CKnife, Leather, BTome];
       enterRoom("Stables");
       break;
@@ -442,7 +442,7 @@ function setclass(usern){
       Cname = "Thomas";
       hp = 25;
       maxhp = 25;
-      inv = [Traveler, Gun, RTome, health, health, health, health];
+      inv = [Traveler, Gun, RTome];
       equipment = [Gun, Traveler, RTome];
       enterRoom("Castle Gate");
       break;
@@ -451,7 +451,7 @@ function setclass(usern){
       Cname = "Vinny";
       hp = 30;
       maxhp = 30;
-      inv = [Traveler, Gun, ATome, health, health, health, health];
+      inv = [Traveler, Gun, ATome];
       equipment = [Gun, Traveler, ATome];
       enterRoom("Castle Gate");
       document.getElementById("gamestart").play();
@@ -462,7 +462,7 @@ function setclass(usern){
       Cname = "Lyra";
       hp = 20;
       maxhp = 20;
-      inv = [JesterOutfit, Lamp, JTome, health, health, health, health];
+      inv = [JesterOutfit, Lamp, JTome];
       equipment = [Lamp, JesterOutfit, JTome];
       enterRoom("Castle Gate");
       break;
@@ -471,7 +471,7 @@ function setclass(usern){
       Cname = "Cecil";
       hp = 20;
       maxhp = 20;
-      inv = [Robes, Brush, PTome, health, health, health, health];
+      inv = [Robes, Brush, PTome];
       equipment = [Brush, Robes, JTome];
       enterRoom("Painter's Tower");
       break;
@@ -480,7 +480,7 @@ function setclass(usern){
       Cname = "Amanda";
       hp = 45;
       maxhp = 45;
-      inv = [Robes, BaseballBat, AncTome, health, health, health, health];
+      inv = [Robes, BaseballBat, AncTome];
       equipment = [BaseballBat, Robes, AncTome];
       skills = [];
       break;
@@ -1102,7 +1102,7 @@ function foeturn()
         break;
       case "shield up":
           GS.innerHTML+=("<p"+currentfoe.type+" raises its shield taking less damage for a few turns.</p>")
-          foeaddcondition(lowprot);
+          foeaddcondition(currentfoe,lowprot);
         break;
       case "Abuse":
         foeattack(4,4,2,"Rapid Fire");
@@ -1131,8 +1131,8 @@ function foeturn()
       case "Magic Shield":
           if(equipment[0].type != "Mage Bane"){
           GS.innerHTML+=("<p"+currentfoe.type+" summons a large magical shield to protect it self.</p>")
-          foeaddcondition(highdodge);
-          foeaddcondition(prot);
+          foeaddcondition(currentfoe,highdodge);
+          foeaddcondition(currentfoe,prot);
           }
           else{
             GS.innerHTML+=("<p"+currentfoe.type+" summons a large magical shield to protect itself self but Mage Bane flashes green, dispelling the shield..</p>")
@@ -1145,7 +1145,7 @@ function foeturn()
           });
           if(find(conditons,"Attach Strings") != 2000){
             addcondition(lowdizzy);
-            foeaddcondition(lowbroken);}
+            addcondition(lowbroken);}
         break;
       case "Attach String":
       if(find(conditons,"Attach Strings") == 2000){
@@ -1325,7 +1325,3 @@ function damageplayer(amount){
         GS.innerHTML+=("<p> You've been slain.</p>")
       }
 }
-
-
-
-
