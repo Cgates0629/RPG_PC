@@ -73,25 +73,28 @@ class skill {
     this.spcost = spcost;
     this.reqhit = reqhuit;
     this.reqtarg = reqtarg;
-    this.soundeffect = this.soundeffect;
+    this.soundeffect = soundeffect;
   }
   use(target){
     if(sp>=this.spcost){
       sp-=this.spcost;
       if(this.soundeffect != null){document.getElementById(this.soundeffect).play();}
-      if(this.reqhuit == true){
+      if(this.reqhit == true){
         let attackplus = 0;
+        let Rtarget = foes[target-1];
         if(find(conditons, "Focus") != 2000){
             attackplus += conditons[find(conditons, "Focus")].strength;
          }
-          let hitroll = Math.floor(Math.random() * 20) + equipment[0].hitbonus + attackplus;
-          GS.innerHTML+=("<p> You got a "+hitroll+" on your attempt to hit. </p>");
+        let hitroll = Math.floor(Math.random() * 20) + equipment[0].hitbonus + attackplus;
+        GS.innerHTML+=("<p> You got a "+hitroll+" on your attempt to hit. </p>");
         let targetdodge = 0;
-        if(find(target.cons, "Dodge") != 2000){
-          targetdodge += target.cons[find(target.cons, "Dodge")].strength;
+        if(find(Rtarget.cons, "Dodge") != 2000){
+          targetdodge += Rtarget.cons[find(Rtarget.cons, "Dodge")].strength;
         }
-        if(hitroll < target.AC + targetdodge){
-          GS.innerHTML+=("<p> Your skill failed to hit its "+target.type+". </p>")
+        if(hitroll < Rtarget.AC + targetdodge){
+          GS.innerHTML+=("<p> Your skill failed to hit its "+Rtarget.type+". </p>")
+          turn += 1;
+          foeturn();
           return;
         }
       }
@@ -149,7 +152,7 @@ class skill {
           console.log(element.dmg);
       });
     }
-    else{damagefoe(element.dmg, foes[target], element.type, true);}
+    else{damagefoe(element.dmg, foes[target-1], element.type, true);}
   }
 }
 let hp = 20;
@@ -198,6 +201,7 @@ const GainFocus = new effect("PAddcon",lowfocus,null,null);
 const GainlowDizzy = new effect("PAddcon",lowdizzy,null,null);
 const LowHeal = new effect("Heal",null,4,null);
 const GreaterHeal = new effect("Heal",null,8,null);
+const FoulCon = new skill([inflictlowdiz, new effect("dmg",null,12,"Holy")],"Smite",3,"You ask the 'holy' things above to strike down your foes doing 12 Holy damage and making it harder for them to hit. Example: use Smite SP Cost: 3",true,true);
 const DazzalB = new skill([inflictlowdiz,GainDodge],"Dazzling Bomb",2,"Throw out a colorful explosive making you very hard to hit for 2 turns. Example: use Dazzling Bomb SP Cost: 2",false);
 const Smite = new skill([inflictlowdiz, new effect("dmg",null,12,"Holy")],"Smite",3,"You ask the 'holy' things above to strike down your foes doing 12 Holy damage and making it harder for them to hit. Example: use Smite SP Cost: 3",true,true);
 const HealingPrayer = new skill([GreaterHeal],"Healing Prayer",2,"Heal for 8 HP. Example: use Healing Prayer SP Cost: 2",false,false);
@@ -222,17 +226,17 @@ const FancyCloth = new armor(13, "Fancy Clothes", null, "A set of clean and roya
 const JesterOutfit = new armor(10, "Jester Outfit", null, "A set of colorful Jester's Clothing. They give an AC of 10 and a Max SP of 20",20);
 const Traveler = new armor(10, "Traveler Outfit", null, "A set of common travleing clothing. They give an AC of 11 and a Max SP of 17",17);
 const Plate = new armor(19, "Plate Armor", null, "A strong set of metal Plate Armor. They give an AC of 19 and a Max SP of 2",2);
-const BoneClub = new weapon(3,6, "Giant Bone Club", null, "A large white bone that seems to resemble the human humerus has been reinforced at the top with bits of metal turning it into a good blunt weapon. HitBonus: 4 ATK: 8-10 SP Gain: 0","Blunt",0,4);
-const BaseballBat = new weapon(3,6, "Baseball Bat", null, "A old and dented baseball bat. HitBonus: 2 ATK: 2-5 SP Gain: 2","Blunt",2,2);
-const CKnife = new weapon(3,4, "Combat Knife", null, "A rusted and dull Combat Knife. HitBonus: 3 ATK: 3-4 SP Gain: 1","Slash",1,3);
-const Brush = new weapon(1,2, "Brush", null, "A small painting brush not made for combat. HitBonus: 1 ATK: 1-2 SP Gain: 3","ink",3,1);
-const Godsword = new weapon(255,255, "God Sword", null, "A small painting brush not made for combat. HitBonus: 111 ATK: 255 SP Gain: 3","ink",111,11);
-const Taser = new weapon(2,4, "Taser", null, "A small civilan issue taser that civilian issue taser crackles with electricity. HitBonus: 1 ATK: 2-4 SP Gain: 2","Slash",1,2,);
-const Shovel = new weapon(2,7, "Shovel", null, "A large rusty iron shovel thats had its edges shappened. HitBonus: 2 ATK: 2-7 SP Gain: 1","Slash",2,1,);
-const Lamp = new weapon(2,4, "Broken Lamp", null, "A old lamp with its glass bulb broken at the top making for some sharp edges. HitBonus: 1 ATK: 2-4 SP Gain: 2","Slash",2,1);
-const Mbane = new weapon(6,9, "Mage Bane", null, "A old sword made out of some short of green metal with a light blue glow. HitBonus: 5 ATK: 6-9 SP Gain: 0","SlashM",0,5);
-const Gun = new weapon(3,3, "9mm Pistol", null, "A standerd issue 9mm Handgun. HitBonus: 3 ATK: 3 SP Gain: 2","Piercing",2, 3);
-const Longbow = new weapon(5,5, "Longbow", null, "A old wooden Longbow. HitBonus: 2 ATK: 5 SP Gain: 1","Piercing",2,1);
+const BoneClub = new weapon(8,10, "Giant Bone Club", null, "A large white bone that seems to resemble the human humerus has been reinforced at the top with bits of metal turning it into a good blunt weapon. HitBonus: 4 ATK: 8-10 SP Gain: 0","Blunt",0,4);
+const BaseballBat = new weapon(1,8, "Baseball Bat", null, "A old and dented baseball bat. HitBonus: 2 ATK: 2-5 SP Gain: 2","Blunt",2,2);
+const CKnife = new weapon(3,4, "Combat Knife", null, "A rusted and dull Combat Knife. HitBonus: 4 ATK: 3-4 SP Gain: 1","Slash",1,4);
+const Brush = new weapon(1,2, "Brush", null, "A small painting brush not made for combat. HitBonus: 6 ATK: 1-2 SP Gain: 3","ink",3,6);
+const Godsword = new weapon(255,255, "God Sword", null, "A small painting brush not made for combat. HitBonus: 111 ATK: 255 SP Gain: 3","ink",111,121);
+const Taser = new weapon(2,5, "Taser", null, "A small civilan issue taser that civilian issue taser crackles with electricity. HitBonus: 4 ATK: 2-5 SP Gain: 2","Shock",1,4);
+const Shovel = new weapon(2,7, "Shovel", null, "A large rusty iron shovel thats had its edges shappened. HitBonus: 4 ATK: 2-7 SP Gain: 1","Slash",2,4,);
+const Lamp = new weapon(2,4, "Broken Lamp", null, "A old lamp with its glass bulb broken at the top making for some sharp edges. HitBonus: 4 ATK: 2-4 SP Gain: 2","Slash",2,4);
+const Mbane = new weapon(6,9, "Mage Bane", null, "A old sword made out of some short of green metal with a light blue glow. HitBonus: 8 ATK: 6-9 SP Gain: 0","SlashM",0,8);
+const Gun = new weapon(3,3, "9mm Pistol", null, "A standerd issue 9mm Handgun. HitBonus: 5 ATK: 3 SP Gain: 2","Piercing",2,5);
+const Longbow = new weapon(5,5, "Longbow", null, "A old wooden Longbow. HitBonus: 3 ATK: 5 SP Gain: 1","Piercing",1,3);
 const BTome = new offhand(null,"Brawler Tome", [Bthirst, TakeH], "An old and dusty tome with old tips for fighting kept inside.");
 const PTome = new offhand(null,"Painter's Tome", [PaintCut, PaintEnd], "An old and dusty tome with old tips for painting kept inside.");
 const JTome = new offhand(null,"Jester's Tome Tome", [Enthrall, FakeOut], "An old and dusty tome with old tips for entertaining kept inside.");
@@ -240,7 +244,7 @@ const ATome = new offhand(null,"Advisor Tome", [Bandage, CareOb], "An old and du
 const RTome = new offhand(null,"Runner's Tome", [GoDef, PanicStrikes], "An old and dusty tome with old tips for moving kept inside.");
 const RoTome = new offhand(null,"Rogue's Tome", [PanicStrikes, FakeOut, DazzalB], "An old and dusty tome with old tips for sneaking and stabbing kept inside.");
 const PeTome = new offhand(null,"Prayer Tome", [HealingPrayer, Smite, RProtection, HBlast], "An old and dusty prayer tome with old blessings kept inside.");
-const AlTome = new offhand(null,"Alchemist's Tome", [Dflame, Enthrall, Bandage, CareOb], "A mess of scrapped together journal pages with recipes for potions kept inside.");
+const AlTome = new offhand(null,"Alchemist's Tome", [Dflame, Enthrall, Bandage, CareOb, FoulCon], "A mess of scrapped together journal pages with recipes for potions kept inside.");
 const AncTome = new offhand(null,"Ancient Tome", [Mess, Dflame], "An old and dusty tome with old spells kept inside.");
 const FTome = new offhand(null,"Flame Tome", [Dflame, LargeFlame], "An old and dusty tome with ancient fire spells kept inside.");
 const Godblast = new skill([inflictlowdiz ,new effect("dmg",null,1000,"Godblast")],"Godblast",1,"God blasted",false,false);
@@ -249,7 +253,7 @@ const Noble = new foe(22,15,"Noble",["Cup","Curse","Cut","Heal"],["ink"]);
 const Jailer = new foe(22,15,"Jailer",["Trap","Rip","Abuse"],["ink"]);
 const Alchemist = new foe(22,12,"Alchemist",["Stab","Burn","Splash","Heal"],["fire"]);
 const Quartermaster = new foe(22,12,"Quartermaster",["Break","shield up","Burn"],[]);
-const skelWar = new foe(9,12,"Skeleton Warrior",["slash","shield up"],["Blunt"]);
+const skelWar = new foe(9,12,"Skeleton Warrior",["slash","slash","shield up"],["Blunt"]);
 const skelarch = new foe(6,15,"Skeleton Archer",["Rapid Fire","Weaken"],["Blunt"]);
 const skelGia = new foe(35,7,"Skeleton Giant",["Break","Shatter"],["Blunt"]);
 const Flamerat = new foe(2,6,"Flame Rat",["bite","fire bite"],["Godblast"]);
@@ -259,7 +263,7 @@ const Mage = new foe(45,15,"Mage",["Fireball","Curse","Blind","Magic Shield"],["
 const Puppet = new foe(4,16,"Marionette",["slash","shield up"],["Slash"]);
 const PuppetMaster = new foe(45,14,"Puppet Master",["Dance Little Puppet","Attach String"],["Slash"]);
 // ca
-const NighttimeKing = new foe(55,14,"King of the Night Time Streets",["Dark Beasts","Crushing Shadows","Nlind"],["Holy"]);
+const NighttimeKing = new foe(55,14,"King of the Night Time Streets",["Dark Beasts","Crushing Shadows","Blind"],["Holy"]);
 // N
 const JustADeer = new foe(60,12,"Just a Deer",["Strike","Eat"],[]);
 // ce
@@ -269,9 +273,10 @@ const TheOutsider = new foe(40,13,"The Outsider",["That Beutiful Music","Multila
 // tommy
 const TheSilentwoods = new foe(55,0,"The Silent Woods",["Remove","Forget","Silince"],[]);
 
-const RoItem = new item("One of the corpses seems to have a tight grip around a Rogue's Tome.", "Rogue Tome", RoTome);
+const RoItem = new item("One of the corpses seems to have a tight grip around a Rogue Tome.","tome", "Rogue's Tome", RoTome);
 const MBItem = new item("Sitting on a weapon rack in the back is sharp Green Sword", "a set of nice cloth", "Green Sword", Mbane);
 const longbowItem = new item(" holding a Longbow,", "a set of nice cloth", "Longbow", Longbow);
+const emptyItem = new item("", "", "");
 const leatheritem = new item(" wearing a set of Leather Armor", "a set of nice cloth", "Leather Armor", Leather);
 const BclubItem = new item("On the giant skeleton's corpse is a large Bone Club.", "a set of nice cloth", "Bone Club", BoneClub);
 const PlateItem = new item("Lying in a pile in front of a turned-over armor stand is a suit of Plate Armor.", "a set of nice cloth", "Plate Armor", Plate);
@@ -279,7 +284,7 @@ const titem = new item(" Placed on the table is a Shiny Key.", "a simple Shiny K
 const FtomeIte = new item(" Sticking out from one of the bookshelves is a Flame Tome.", "a flaming tome", "Flame Tome", FTome);
 const ShovelItem = new item(" In the center of the garden is a small hole with a rusty iron shovel kept inside.", "a Alchemist Tome", "Shovel", Shovel);
 const AltomeIte = new item(" an Alchemist Tome resting on the corner", "a Alchemist Tome", "Alchemist Tome", AlTome);
-const health = new item(" Sitting on the table is a Red Potion.", "A deep red potion likely for healing.", "Red Potion");
+const health = new item(" Sitting on the table is a Red Potion.", "A deep red potion likely for healing.", "Red Potion", null);
 const fancy = new item(" Hanging off the bed is a set of Fancy Clothes.", "a set of nice cloth", "Fancy Clothes", FancyCloth);
 const Ckey = new item("There is a body of an old man lying in the center of the room with a Cell Key lodged into its eye socket.", "A small iron key covered in blood.", "Cell Key");
 const scrollI = new item("On the Mage's Corpse is a Magic Scroll that glows a deep green.", "a magic scroll glowing green", "Magic Scroll");
@@ -361,16 +366,16 @@ let rooms =[
     //outside left
     new room("Guard Barracks",
     [health,health],null,"Dungeon",null,"Weapon Room","Courtyard","Stables",null,
-    ["A small blood-coated room with rows of beds lining the room. Broken and discarded sets of armor and weapons fill the room, each coated in human blood. There is a small table on the left side.",0,1,"<p>To the right is a small door leading to the stables. Forward leads to a broken wooden door, where you can hear the clashing of metal. Back leads to the Courtyard. A small stair case leads down into darkness.</p>"],),
+    ["A small blood-coated room with rows of beds lining the room. Broken and discarded sets of armor and weapons fill the room, each coated in human blood. There is a small table on the left side.",0," ",1,"<p>To the right is a small door leading to the stables. Forward leads to a broken wooden door, where you can hear the clashing of metal. Back leads to the Courtyard. A small stair case leads down into darkness.</p>"],),
     new room("Stables",
     [],null,null,null,null,"Guard Barracks",null,null,
     ["Large stables with piles and piles of hay placed end-to-end take up most of the room, with the rest being taken up by four stalls. Four iron status of horses are placed in each of the 4 stalls. Back leads to the Guard Barracks."],),
     new room("Weapon Room",
-    [MBItem],null,null,"Forge","Guard Barracks",null ,null,[Quartermaster],
+    [MBItem],null,null,null,"Forge","Guard Barracks",null,[Quartermaster],
     ["A large weapon room filled with empty weapon racks and barren armor stands. Lying in a circle on the ground are what appear to be half-decayed human guard bodies. Small worms can be seen crawling through their intestines on open wounds.",0,"<p> Back is a door leading to the Guard Barracks, and Forward leads to the forge.</p>"],
       5, "A man covered in iron armor that's barely being held together by small strands of skin stands at the center of the room. He slowly raises his hammer."),
     new room("Forge",
-    [Plate],null,null,null,null,"Weapon Room",null,null,
+    [PlateItem],null,null,null,null,"Weapon Room",null,null,
     [" A large room that is blazing hot as you enter, with a roaring forge in its center, a half-finished sword is sitting on the anvil in its center. There are many small iron ingots and metal molds scattered around the room, making it hard to walk around.",0,"<p> Back leads to the Weapon Room. </p>"],),
 
     //outside right
@@ -422,8 +427,8 @@ function setclass(usern){
     case "VizlzzpclVjjbsapza": // Calx
       Cclass = "Cultist";
       Cname = "Calx";
-      hp = 25;
-      maxhp = 25;
+      hp = 35;
+      maxhp = 35;
       inv = [Robes, BaseballBat, AncTome];
       equipment = [BaseballBat, Robes, AncTome];
       enterRoom("Hidden Study");
@@ -440,8 +445,8 @@ function setclass(usern){
     case "UlycvbzPuclzapnhavy": // Tommy
       Cclass = "Runner";
       Cname = "Thomas";
-      hp = 25;
-      maxhp = 25;
+      hp = 30;
+      maxhp = 30;
       inv = [Traveler, Gun, RTome];
       equipment = [Gun, Traveler, RTome];
       enterRoom("Castle Gate");
@@ -449,8 +454,8 @@ function setclass(usern){
     case "Uv-UvuzluzlPuclzapnhavy": // Vinny 
       Cclass = "Advisor";
       Cname = "Vinny";
-      hp = 30;
-      maxhp = 30;
+      hp = 35;
+      maxhp = 35;
       inv = [Traveler, Gun, ATome];
       equipment = [Gun, Traveler, ATome];
       enterRoom("Castle Gate");
@@ -460,8 +465,8 @@ function setclass(usern){
     case "SprlhislLsvjbapvupza": // Lyra
       Cclass = "Jester";
       Cname = "Lyra";
-      hp = 20;
-      maxhp = 20;
+      hp = 30;
+      maxhp = 30;
       inv = [JesterOutfit, Lamp, JTome];
       equipment = [Lamp, JesterOutfit, JTome];
       enterRoom("Castle Gate");
@@ -469,8 +474,8 @@ function setclass(usern){
     case "YhaolyIlYlhkpun": // Cecil
       Cclass = "Painter";
       Cname = "Cecil";
-      hp = 20;
-      maxhp = 20;
+      hp = 30;
+      maxhp = 30;
       inv = [Robes, Brush, PTome];
       equipment = [Brush, Robes, JTome];
       enterRoom("Painter's Tower");
@@ -535,14 +540,14 @@ function enter(event){
            if(find(conditons,"Fire") != 2000){
             GS.innerHTML+=("<p> You've no longer on fire. </p>");
             find(conditons,"Fire")
-            conditons[find(conditons,"Fire")].type == "";
+            conditons[find(conditons,"Fire")].type = " ";
             }
           break;
         case "Remember":
            if(find(conditons,"Forget") != 2000){
             GS.innerHTML+=("<p> You've try to Remeber. </p>");
             find(conditons,"Forget")
-            conditons[find(conditons,"Forget")].type == "";
+            conditons[find(conditons,"Forget")].type = "";
             }
           break;
         case "go":
@@ -671,7 +676,7 @@ function get(input){
     }else{
     inv.push(currentroom.items[x]);}
     GS.innerHTML+=("<p> You got "+currentroom.items[x].type+". </p>");
-    rooms[find(rooms,currentroom.type)].items[x] = null;
+    rooms[find(rooms,currentroom.type)].items[x] = emptyItem;
     enterRoom(rooms[find(rooms,currentroom.type)].type);
   }
   else{
@@ -687,7 +692,7 @@ function help(inp){
     const inputarray = inp.split(" ");
     //if(combat){return;}
       if(inputarray.length == 1){
-        GS.innerHTML+=("<p> info <item/skill>   go <direction>  get <item>   skill    help <command>   inv    use   wear <item>   look <object> char  </p><p>Combat: Strike Cast <skill> run</p>");
+        GS.innerHTML+=("<p> info <item/skill>   go <direction>  get <item>   skill  help <command>  inv  use <item/skill>  equip <item>  char  </p><p>Combat: Strike</p>");
       }
       else{
         switch(inputarray[1]){
@@ -698,7 +703,7 @@ function help(inp){
             GS.innerHTML+=("<p> go: Moves you either forward, back, left, right, up, or down. Only works if there is an open door, hallway, or stairway in that direction. Example: go right </p>");
             break;
           case "get":
-            GS.innerHTML+=("<p> get: Adds the item to your inventory if it can be picked up. Example: get worn book</p>");
+            GS.innerHTML+=("<p> get: Adds the item to your inventory if it can be picked up. Example: get Worn book</p>");
             break;
           case "skill":
             GS.innerHTML+=("<p> skill: Gives a list of your skills can also be used as skill <skill> to get info on a skill. Example: skill fireball</p>");
@@ -713,7 +718,7 @@ function help(inp){
             GS.innerHTML+=("<p> use: If the object has a use like a healing potion or a magic scroll its used. Example: Use red potion. </p>");
             break;
           case "equip":
-            GS.innerHTML+=("<p> equip: Puts armor on or equips weapons. Example: wear scalemail, wear shortsword. </p>");
+            GS.innerHTML+=("<p> equip: Puts armor on or equips weapons. Example: equip scalemail, equip shortsword. </p>");
             break;
           case "char":
             GS.innerHTML+=("<p> char: Shows you all the info of your character. </p>");
@@ -835,26 +840,20 @@ function enterRoom(name){
   let y = -1;
   document.getElementById("steps").play();
   document.getElementById("steps").volume = 1;
-  let des = copyarray(newroom.des); 
+  let dets = []; 
   newroom.des.forEach(element => {
     if(Number.isInteger(element)){
-    console.log(element);
-      newroom.des.forEach(b => {
-        if(b == element){
-          y = x;
-        }
-        x+=1;
-      });
-      if(y == -1){
-
-      }
-      if(newroom.items[element] == null){
-        des[y] = "";
-      }else{des[y] = newroom.items[element].pickupdes;}
+    console.log(element + "is nmu");
+    if(newroom.items[element] == null){
+      dets.push("");
+    }else{dets.push(newroom.items[element].pickupdes);}
+    }else{
+      dets.push(element);
     }
+    x+=1;
   });
-  des = des.join(" ");
-  GS.innerHTML+=(des);
+  dets = dets.join(" ");
+  GS.innerHTML+=(dets);
 }
 
 function startcombat(newfoes)
@@ -920,14 +919,14 @@ function strike(target, skillstrike, attackminus){
   if(find(conditons, "Focus") != 2000){
     attackplus += conditons[find(conditons, "Focus")].strength;
   }
-  let hitroll = Math.floor(Math.random() * 20) + equipment[0].hitbonus - attackminus;
+  let hitroll = Math.floor(Math.random() * 20) + equipment[0].hitbonus - attackminus + attackplus;
   GS.innerHTML+=("<p> You got a "+hitroll+" on your attempt to hit. </p>");
   if(sp<equipment[1].maxsp){sp+=equipment[0].spgain; if(sp >equipment[1].maxsp){sp = equipment[1].maxsp;}}
   if(turn != 0){return;}
   if(foes[target-1].hp <= 0){GS.innerHTML+=("<p> That target is already dead. Pick another target. </p>"); return;}
   let targetdodge = 0;
   if(find(foes[target-1].cons, "Dodge") != 2000){
-      targetdodge += target.cons[find(foes[target-1].cons, "Dodge")].strength;
+      targetdodge += foes[target-1].cons[find(foes[target-1].cons, "Dodge")].strength;
     }
   if(hitroll > foes[target-1].AC + targetdodge){
       document.getElementById("phit").play();
@@ -946,7 +945,7 @@ function strike(target, skillstrike, attackminus){
 
 
 function damagefoe(amount, target, type, neeedmess){
-  if(target.weakness != undefined){
+  if(target.weakness != undefined){ 
     if(target.hp <= 0){
       return;
     }
@@ -986,6 +985,7 @@ function playerturn(){
   turn = 0;
   let x = 1;
   let cmeess = "<p> ";
+  if(combat != true){return;}
   playerconditons();
   foes.forEach(foe => {
     cmeess += "  Spot:"+x+" "+foe.type+" HP: "+foe.hp+"/"+foe.maxhp;
@@ -1007,7 +1007,7 @@ function foeturn()
     return;
   }
   let currentfoe = foes[turn-1];
-  foeconditons(currentfoe)
+  foeconditons(currentfoe);
   if(currentfoe.hp <= 0){
     turn += 1;
     if(turn > foes.length)
@@ -1016,7 +1016,7 @@ function foeturn()
       element.rounds -= 1;
       if(element.rounds <= 0){
         GS.innerHTML+=("<p> You are no longer effected by "+element.type+"</p>")
-        conditons[find(conditons,element.type)].type == "";
+        conditons[find(conditons,element.type)].type = "";
       }
     });
       playerturn();
@@ -1051,9 +1051,9 @@ function foeturn()
       case "Heal":
         let healroll = Math.floor(Math.random() * 7) + 1;
         GS.innerHTML+=("<p>The "+currentfoe.type+" healed for "+healroll+". </p>")
-        currentfoe.hp += 6;
+        currentfoe.hp += healroll;
         if(currentfoe.hp > currentfoe.maxhp){
-          currentfoe.hp = currentfoe.maxhp.value;
+          currentfoe.hp = currentfoe.maxhp;
         }
         break;
       case "Trap":
@@ -1217,15 +1217,16 @@ function foeturn()
       }
         break;
     }
-    turn+=1;
-    currentfoe.cons.forEach(element => { 
+    if(foes[turn-1].cons.length != 0){
+    foes[turn-1].cons.forEach(element => { 
       element.rounds -= 1;
       if(element.rounds <= 0 && element.type != ""){
-        GS.innerHTML+=("<p> The "+currentfoe.type+" is no longer effected by "+element.type+"</p>")
-        currentfoe.cons[find(currentfoe.cons, element.type)].type == "";
+        GS.innerHTML+=("<p> The "+foes[turn-1].type+" is no longer effected by "+element.type+"</p>")
+        foes[turn-1].cons[find(foes[turn-1].cons, element.type)].type = "";
       }
       
-    });
+    });}
+    turn+=1;
     GS.scrollTop = GS.scrollHeight;
       setTimeout(() => {
       foeturn();}, 2000);
@@ -1266,10 +1267,8 @@ function foeattack(mindamage, maxdamage, chance, sname){
 }
 
 function addcondition(conditont){
- conditons.forEach(element => {
-  if(element.type == conditont.type)
-    return;
- });
+  if(find(conditons, conditont.type) != 2000){
+    return;}
  if(conditont.type == "Weakness" && equipment[1].type == "Fancy Clothes"){
    GS.innerHTML+=("<p> Your Fancy Clothes protected you from weakness. </p>");
   return;
@@ -1278,10 +1277,8 @@ function addcondition(conditont){
   GS.innerHTML+=("<p> You've been inflicted with "+conditont.type+".</p>");
 }
 function foeaddcondition(target, conditont){
- target.cons.forEach(element => {
-  if(element.type == conditont.type)
-    return;
- });
+  if(find(target.cons, conditont.type) != 2000){
+    return;}
   target.cons.push(new conditon(conditont.rounds, conditont.strength, conditont.type));
   GS.innerHTML+=("<p> "+target.type+" has been inflicted with "+conditont.type+".</p>");
 }
