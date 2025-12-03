@@ -161,7 +161,7 @@ function dragElement(elmnt) {
 }
 function windowclose(idet){
     const element = document.getElementById(idet);
-        element.remove();
+    element.remove();
 }
 function dial(num){
   let phonebox = document.getElementById("phone");
