@@ -652,6 +652,8 @@ function enter(event){
          case "sleep":
           if(sleep != false || currentroom.type != "Grand Bedroom"){return;}
           GS.innerHTML+=("<p> You feel well rested. HP and SP Maxed Out. </p>");
+          hp = maxhp;
+          sp = equipment.maxsp;
           sleep = true;
             break;
         case "use":
