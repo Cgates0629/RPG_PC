@@ -1,0 +1,49 @@
+<html>
+    <audio id="gamestart" loop>
+    <source src="dark_ambient-16862.mp3">
+    </audio>
+    <audio id="steps">
+    <source src="pasos-steps-40285.mp3">
+    </audio>
+    <audio id="kill">
+    <source src="deadly-strike-352458.mp3">
+    </audio>
+    <audio id="phit">
+    <source src="item-swing-sfx-3-409079.mp3">
+    </audio>
+    <audio id="thanks">
+    <source src="thankyou.wav">
+    </audio>
+    <audio id="fire">
+    <source src="fire-magic-5-378639.mp3">
+    </audio>
+    <audio id="smash">
+    <source src="hammer-smash-effect-382731.mp3">
+    </audio>
+    <audio id="splash">
+    <source src="splash-01-35899.mp3">
+    </audio>
+    <audio id="impact">
+    <source src="flesh-impact-266316.mp3">
+    </audio>
+    <script src="RogueMovem.js"></script>
+    <body class='screen' style='background-color: black; color: lightgreen; overflow-x: hidden;'>
+        <div style="border: 2px green; width: 100%; height: 90%; overflow: auto; overflow-x: hidden;" id="GameScreen">
+            <p style="text-indent: 200px;">Fort of Metus (Demo)</p>
+                    <div><div data-field="request">foo</div></div>
+            <div id="bottomGame"></div>
+        </div>
+        <input type="text" id="inputfield" style="width: 100%; position: absolute; bottom: 5%; background-color: black; color: green;" onkeydown="enter(event)">
+    </body>
+</html>
+
+<style>
+    .vl {
+  border-left: 6px solid green;
+  height: 10px;
+}
+.h1{
+    border-bottom: 6px solid green;
+    height: 10px;
+}
+</style>

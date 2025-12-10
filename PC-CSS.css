@@ -37,6 +37,21 @@ body {
 .bcard{
     width: 90%; height: 90%; background-image: url("1.png"); background-size: 100% 100%; background-repeat: no-repeat; overflow: hidden;
 }
+.cut1{
+    width: 90%; height: 90%; background-image: url("cut1.png"); background-size: 100% 100%; background-repeat: no-repeat; overflow: hidden;
+}
+.cut2{
+    width: 90%; height: 90%; background-image: url("cut2.png"); background-size: 100% 100%; background-repeat: no-repeat; overflow: hidden;
+}
+.cut3{
+    width: 90%; height: 90%; background-image: url("cut3.png"); background-size: 100% 100%; background-repeat: no-repeat; overflow: hidden;
+}
+.cut4{
+    width: 90%; height: 90%; background-image: url("cut4.png"); background-size: 100% 100%; background-repeat: no-repeat; overflow: hidden;
+}
+.cut5{
+    width: 90%; height: 90%; background-image: url("cut5.png"); background-size: 100% 100%; background-repeat: no-repeat; overflow: hidden;
+}
 .muse{
     background-color: dimgrey; background-image: url("museum-background-ar4wuzdgkobt7g65.jpg"); height: 1000px; width: 1000px;
 }
