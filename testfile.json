@@ -24,7 +24,7 @@
 ,{"name":"part.", "icon":"imgicon.png", "Perm":["AdminGuy2","YhaolyIlYlhkpun","SprlhislLsvjbapvupza","VizlzzpclVjjbsapza","Uv-UvuzluzlPuclzapnhavy","UlycvbzPuclzapnhavy","MlyvjpvbzWyvaljavy"], "insides":"<div class='cut1'></div>"}
 ,{"name":"part,", "icon":"imgicon.png", "Perm":["AdminGuy2","YhaolyIlYlhkpun","SprlhislLsvjbapvupza","VizlzzpclVjjbsapza","Uv-UvuzluzlPuclzapnhavy","UlycvbzPuclzapnhavy","MlyvjpvbzWyvaljavy"], "insides":"<div class='cut2'></div>"}
 ,{"name":"part/", "icon":"imgicon.png", "Perm":["AdminGuy2","YhaolyIlYlhkpun","SprlhislLsvjbapvupza","VizlzzpclVjjbsapza","Uv-UvuzluzlPuclzapnhavy","UlycvbzPuclzapnhavy","MlyvjpvbzWyvaljavy"], "insides":"<div class='cut3'></div>"}
-,{"name":"part'", "icon":"imgicon.png", "Perm":["AdminGuy2","YhaolyIlYlhkpun","SprlhislLsvjbapvupza","VizlzzpclVjjbsapza","Uv-UvuzluzlPuclzapnhavy","UlycvbzPuclzapnhavy","MlyvjpvbzWyvaljavy"], "insides":"<div class='cut4'></div>"}
+,{"name":"part..", "icon":"imgicon.png", "Perm":["AdminGuy2","YhaolyIlYlhkpun","SprlhislLsvjbapvupza","VizlzzpclVjjbsapza","Uv-UvuzluzlPuclzapnhavy","UlycvbzPuclzapnhavy","MlyvjpvbzWyvaljavy"], "insides":"<div class='cut4'></div>"}
 ,{"name":"part", "icon":"imgicon.png", "Perm":["AdminGuy2","YhaolyIlYlhkpun","SprlhislLsvjbapvupza","VizlzzpclVjjbsapza","Uv-UvuzluzlPuclzapnhavy","UlycvbzPuclzapnhavy","MlyvjpvbzWyvaljavy"], "insides":"<div class='cut5'></div>"}
 ]
 ,"Users":[{"Username":"AdminGuy2","Password":"AdminGuy2"},
@@ -52,4 +52,5 @@
 {"nu":"6605550125", "file":"<audio autoplay='autoplay'><source src='hunter.mp3'></audio>"},
 {"nu":"6605550190", "file":"<audio autoplay='autoplay'><source src='Bookphone.mp3'></audio>"},{"nu":"6605550143", "file":"<audio autoplay='autoplay'><source src='AT&T We're Sorry Message.mp3'></audio>"}
 ]
+
 }
