@@ -26,7 +26,6 @@
 ,{"name":"part/", "icon":"imgicon.png", "Perm":["AdminGuy2","YhaolyIlYlhkpun","SprlhislLsvjbapvupza","VizlzzpclVjjbsapza","Uv-UvuzluzlPuclzapnhavy","UlycvbzPuclzapnhavy","MlyvjpvbzWyvaljavy"], "insides":"<div class='cut3'></div>"}
 ,{"name":"part'", "icon":"imgicon.png", "Perm":["AdminGuy2","YhaolyIlYlhkpun","SprlhislLsvjbapvupza","VizlzzpclVjjbsapza","Uv-UvuzluzlPuclzapnhavy","UlycvbzPuclzapnhavy","MlyvjpvbzWyvaljavy"], "insides":"<div class='cut4'></div>"}
 ,{"name":"part", "icon":"imgicon.png", "Perm":["AdminGuy2","YhaolyIlYlhkpun","SprlhislLsvjbapvupza","VizlzzpclVjjbsapza","Uv-UvuzluzlPuclzapnhavy","UlycvbzPuclzapnhavy","MlyvjpvbzWyvaljavy"], "insides":"<div class='cut5'></div>"}
-,{"name":"Sunday", "icon":"textfileicon.png", "Perm":["AdminGuy2","YhaolyIlYlhkpun","SprlhislLsvjbapvupza","VizlzzpclVjjbsapza","Uv-UvuzluzlPuclzapnhavy","UlycvbzPuclzapnhavy","MlyvjpvbzWyvaljavy"], "insides":"<br>On Sunday, a little rabbit stepped out of its home ready to face the dark and scary world. Before the rabbit would even take its first steps along the path, it would be greeted by the local Judge. The Judge, in its large dark robes and wide wings, stood in front of the rabbit's path, greeting it, “Why hello there, little rabbit, it seems I’ve caught you just in time.” ”I will be following you along your whole journey, little rabbit. Each step you hop down the path, I shall watch and judge for I know you to be a sinful little wretch.” The Rabbit would feel the eyes of the judge following it from behind at all times while it was on the path, yet the rabbit kept hopping along."}
 ]
 ,"Users":[{"Username":"AdminGuy2","Password":"AdminGuy2"},
 {"Username":"User2","Password":"User2"},
@@ -53,4 +52,5 @@
 {"nu":"6605550125", "file":"<audio autoplay='autoplay'><source src='hunter.mp3'></audio>"},
 {"nu":"6605550190", "file":"<audio autoplay='autoplay'><source src='Bookphone.mp3'></audio>"},{"nu":"6605550143", "file":"<audio autoplay='autoplay'><source src='AT&T We're Sorry Message.mp3'></audio>"}
 ]
+
 }
