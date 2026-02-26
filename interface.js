@@ -89,7 +89,7 @@ function login(){
       document.getElementById("homescreen").style.visibility = "visible";
       document.getElementById("loginscreen").style.visibility = "hidden";
       user = saveddata.Users[indexU].Username;
-      if(user == "VizlzzpclVjjbsapza" || user == "AdminGuy2"){
+      if(user != "LupnthapjPuclzapnhavy"){
           const thewindow = document.getElementById("Lbar");
           const newDiv = document.createElement("div");
           newDiv.innerHTML = '<div class="app" onclick="openphone()" style="top: 22%; text-align: center;"><img style="width: 35px; height: 35px;" src="telephone-icon-3614.png"> <div class="apptext">External Communication Tapper</div></div>';
