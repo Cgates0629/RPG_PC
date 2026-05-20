@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="PC-CSS.css">
+    </head>
+    <div id="checkpass" style=" position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);">
+      <p><input id="passkey" class="w3-input w3-padding-16 w3-border" type="text" placeholder="Username" required name="Name"></p>
+      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Password" id="bk"></p>
+        <p id="where"><button class="w3-button w3-black" id="checkpass" onclick="checkpasskey()">Login</button></p>
+    </div>
+    <body style='background-color: whitesmoketan; background-image: none; overflow-y: scroll; float: top;'>
+        <div class="sections" style="width: 100%; height: 100%; visibility: hidden;" id="message">   
+            <button style="position: absolute; left: 50%; top: 2%; transform: translate(-50%, 0%);" class="messenger" onclick="setchat('ZHoly1986');"><i class="fa fa-bed w3-margin-right"></i>ZHoly1986</button>
+            <button style="position: absolute; left: 46%; top: 2%; transform: translate(-50%, 0%);" class="messenger" onclick="setchat('Batter');"><i class="fa fa-car w3-margin-right"></i>Batter</button>
+            <button style="position: absolute; left: 56%; top: 2%; transform: translate(-50%, 0%);" class="messenger" onclick="setchat('Unknown');"><i class="fa fa-car w3-margin-right"></i>Unknown</button>
+            <div id="ZHoly1986" class="imessage" style="width: 100%; min-height: 100%; display: flex; position: absolute;left: 50%; top: 5%;transform: translate(-50%, 0%); visibility: hidden;">
+                <div class="recived">What did you do last Friday?</div>
+                <div class="sent">I was in the rain.</div>
+                <div class="recived">So you're still you.</div>
+                <div class="sent">For now.</div>
+                <div class="sent">Have you managed to get anything useful? Anything at all?</div>
+                <input  style="text-align: center;" placeholder="Some of your messages and chats are still archived. Contact support to request their restoration." disabled>
+                <input  style="text-align: center;" placeholder="Your account has been frozen." disabled>
+            </div>
+            <div id="Batter" class="imessage" style="width: 100%; min-height: 100%; display: flex; position: absolute;left: 50%;top: 5%; transform: translate(-50%, 0%); visibility: hidden;">
+                <div class="recived">is this working? can’t believe she had us set this up.</div>
+                <div class="sent">Seems to be.</div>
+                <div class="recived">did you guys decide on what code to use</div>
+                <div class="sent">Yeah, it’s “What did you do last Friday?” with the response “I was in the rain.”</div>
+                <div class="recived">guess that works</div>
+                <div class="recived">have you been leaving the bread crumbs behind?</div>
+                <div class="recived">it feels like a waste of time</div>
+                <input  style="text-align: center;" placeholder="Some of your messages and chats are still archived. Contact support to request their restoration." disabled>
+                <input  style="text-align: center;" placeholder="Your account has been frozen." disabled>
+            </div>
+            <div id="Unknown" class="imessage" style="width: 100%; min-height: 100%; display: flex; position: absolute;left: 50%;top: 5%; transform: translate(-50%, 0%); visibility: hidden;">
+                <div class="recived"></div>
+                <div class="sent">What did you do last Friday?</div>
+                <div class="recived">....-</div>
+                <div class="recived">..---</div>
+                <div class="recived">-----</div>
+                <div class="recived">-----</div>
+                <div class="recived"></div>
+                <div class="recived">.--</div>
+                <div class="recived">.-.-.-</div>
+                <div class="recived"> </div>
+                <div class="sent">Stop.</div>
+                <div class="sent">It seems you have the wrong person.</div>
+                <div class="recived">--</div>
+                <div class="recived">.-</div>
+                <div class="recived">.--.</div>
+                <div class="recived">.-..</div>
+                <div class="recived">.</div>
+                <div class="recived"></div>
+                <div class="recived">.-.</div>
+                <div class="recived">---</div>
+                <div class="recived">.-</div>
+                <div class="recived">-..</div>
+                <input  style="text-align: center;" placeholder="Your account has been frozen." disabled>
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+function checkpasskey(){
+  let passkey = document.getElementById("passkey").value;
+  if(passkey == "VexedLamb"){
+  let bookid = document.getElementById("bk").value;
+  if(bookid == "VexedWolf"){
+    document.getElementById("checkpass").style.visibility = "hidden";
+    document.getElementById("message").style.visibility = "visible";
+} }}
+function setchat(x){
+    const col=document.getElementsByClassName("imessage");
+    for(let i = 0; i < col.length; i++){
+    col[i].style.visibility = "hidden";
+}
+    document.getElementById(x).style.visibility = "visible";
+}
+</script>
